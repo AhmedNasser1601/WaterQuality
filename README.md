@@ -8,21 +8,20 @@ Access to safe drinking-water is essential to health, a basic human right and a 
 Dataset: contains water quality metrics for 3276 different water bodies with 9 factors affecting the potability of the water (which Indicates if water is safe for human consumption where 1 means Potable and 0 means Not potable.)
 
 <hr>
-
-  The project implementation steps will go as follows:
+  Project implementation steps are going as follows:
   
   
-    ● Understand the dataset attributes
+    ● Understanding the dataset attributes
     
-    ● Apply the required data preprocessing methodsss
+    ● Apply the required data preprocessing methods
     
-    ● Divide your data set to training and testing data
+    ● Divide your dataset to training and testing data
     
     ● Implement the classification model that suits the project best
     
-    ● investigate the performance of your classifier on detecting the quality of water
+    ● Investigate the classifier's performance on detecting the quality of water
     
-    ● Mention your observations and study the parameters (features) that play a vital role in water potability.
+    ● Mention your observations and study the features that plays a vital role in water potability.
     
-    ● After building the classifier model. Use the testing data set to predict the water potability and calculate the error percentage
+    ● Use the testing dataset to predict the water potability and calculate the error percentage
 <hr>
