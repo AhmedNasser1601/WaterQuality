@@ -10,7 +10,6 @@ Dataset: contains water quality metrics for 3276 different water bodies with 9 f
 <hr>
   Project implementation steps are going as follows:
   
-  
     ● Understanding the dataset attributes
     
     ● Apply the required data preprocessing methods
