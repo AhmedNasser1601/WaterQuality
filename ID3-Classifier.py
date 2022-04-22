@@ -10,21 +10,22 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split
 from sklearn import metrics
 
-Waterfile = (pd.read_csv("water_potability.csv")).dropna()
+dataset = (pd.read_csv("water_potability.csv")).dropna()
 
-X = Waterfile.iloc[:, 0:8]     #Features
-Y = Waterfile['Potability']       #Label
-X = ((X - X.mean()) / X.std())    #Normalization
+X = dataset.iloc[:, :8]   #Extract Features
+Y = dataset['Potability']   #Set the Label Column
 
-# Split dataset into training set and test set => 80% training and 20% testing
-X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size = 0.40, random_state = 1, shuffle = True)
+X = ((X - X.mean()) / X.std())   #Normalization step
 
-# Create Decision Tree classifer object
+#Split dataset into training & testing => 60% : 40%
+X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.40, random_state=1, shuffle=True)
+
+#Create Decision-Tree-Classifer object
 clf = DecisionTreeClassifier().fit(X_train, y_train)
 
-#Predict the response for test dataset
+#Predict the Classifier for Testing dataset
 Prdiction = clf.predict(X_test)
 
-# Model Accuracy, Correctness of the model
-print("Test Accuracy: ", metrics.accuracy_score(y_test, Prdiction) * 100, "%") #Test Prediction
-print("Mean Square Error: ", metrics.mean_squared_error(np.asarray(y_test), Prdiction)) #print(Waterfile)
+#Print Model Accuracy & Error of modelp-testing
+print("Test Accuracy: ", metrics.accuracy_score(y_test, Prdiction) *100, "%")
+print("Mean Square Error: ", metrics.mean_squared_error(np.asarray(y_test), Prdiction))
