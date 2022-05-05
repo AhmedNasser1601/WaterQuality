@@ -6,14 +6,12 @@ from sklearn.metrics import confusion_matrix, classification_report
 from sklearn.model_selection import train_test_split
 from sklearn.impute import SimpleImputer
 # load dataset
-dataFile = (pd.read_csv("water_potability.csv")).dropna()     #Reading data
+dataFile = (pd.read_csv("water_potability.csv")).dropna()    #Reading data
 
 X = dataFile.iloc[:, :8]   #Extract Features
 Y = dataFile['Potability']   #Set the Label Column
 
-impu = SimpleImputer(missing_values=np.nan,strategy='mean')
-impu.fit(X)
-x = impu.transform(X)
+
 
 X = ((X - X.mean()) / X.std())   #Normalization step
 
