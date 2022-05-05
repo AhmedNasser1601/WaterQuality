@@ -1,3 +1,5 @@
+from audioop import avg
+
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import  train_test_split
@@ -5,9 +7,11 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics import confusion_matrix,accuracy_score,mean_squared_error
 from  sklearn.model_selection import cross_val_score
+import numpy as np
+from sklearn.impute import SimpleImputer
 
 #Read Data
-dataset = pd.read_csv("water_potability.csv").fillna(0)
+dataset = pd.read_csv("water_potability.csv")
 
 x = dataset.iloc[:,:8].values   
 y = dataset.iloc[:,-1].values
@@ -18,8 +22,12 @@ y = dataset.iloc[:,-1].values
 le = LabelEncoder()
 x[:,0] = le.fit_transform(x[:,0])
 
+impu = SimpleImputer(missing_values= np.nan , strategy="mean")
+impu.fit(x)
+X = impu.transform(x)
+
 #Splitting Data
-X_train, X_test, y_train, y_test=train_test_split(x,y ,test_size =0.33,random_state=100,shuffle=True,stratify=y)
+X_train, X_test, y_train, y_test=train_test_split(X, y, test_size= 0.2, random_state= 1, shuffle= True, stratify= y)
 
 sc = StandardScaler()
 X_train =sc.fit_transform(X_train)
