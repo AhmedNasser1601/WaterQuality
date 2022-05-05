@@ -24,17 +24,15 @@ scaler = MinMaxScaler(feature_range=(0, 1))
 X = scaler.fit_transform(X)
 
 """
-water =WaterFile.groupby('Potability', group_keys = False)
+water =WaterFile.groupby("Potability", group_keys = True)
 watersampling =  water.apply(lambda X:X.sample(frac = 0.7))
 """
-
-impu = SimpleImputer(missing_values= np.nan , strategy= "mean")
+impu = SimpleImputer(missing_values= np.nan , strategy= "median")
 impu.fit(X)
-x = impu.transform(X)
-
+X = impu.transform(X)
 
 #Split dataset into training & testing => 60% : 40%
-X_train, X_test, y_train, y_test = train_test_split(x, Y, test_size=0.50, random_state=1, shuffle=True)
+X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.50, random_state=1, shuffle=True)
 
 
 #Using kernel function
