@@ -18,7 +18,7 @@ from sklearn import metrics
 from sklearn.preprocessing import MinMaxScaler
 
 #loading csv file
-file_path ='/content/waterQuality1.csv'
+file_path ='waterQuality1.csv'
 dataset=pd.read_csv(file_path)
 dataset.head()
 

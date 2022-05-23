@@ -1,3 +1,4 @@
+from matplotlib import pyplot as plt
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
@@ -62,3 +63,9 @@ print(" the prediction score is :",(modelAccuracy))
 ## the mean square error is :
 print(" the mean Square error ",metrics.mean_squared_error( np.asarray(labelTest),knnPredictionResult))
 
+plt.figure(figsize=(12, 6))
+plt.plot(range(1, 40), metrics.mean_squared_error(np.asarray(labelTest),knnPredictionResult), color='red', linestyle='dashed', marker='o',
+         markerfacecolor='blue', markersize=10)
+plt.title('Error Rate K Value')
+plt.xlabel('K Value')
+plt.ylabel('Mean Error')

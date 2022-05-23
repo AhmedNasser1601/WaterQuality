@@ -20,7 +20,7 @@ from sklearn import metrics
 from sklearn.impute import KNNImputer
 
 #loading csv file
-file_path ='/content/water_potability.csv'
+file_path ='water_potability.csv'
 df=pd.read_csv(file_path)
 
 #preprocessing
