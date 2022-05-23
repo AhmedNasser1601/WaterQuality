@@ -8,6 +8,7 @@ Original file is located at
 """
 
 # STRATIFIES K-FOLD CROSS VALIDATION { 10-fold 
+# STRATIFIES K-FOLD CROSS VALIDATION { 10-fold 
 import pandas as pd
 import csv
 from sklearn import preprocessing
@@ -16,8 +17,9 @@ from sklearn.model_selection import train_test_split
 from sklearn import svm
 from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import MinMaxScaler
-
+import numpy as np
 #loading csv file
+import statistics
 file_path ='/content/water_potability.csv'
 df=pd.read_csv(file_path)
 
@@ -123,4 +125,4 @@ print('List of possible accuracy:', accuracies)
 print('\nMaximum Accuracy That can be obtained from this model is:',np.max(accuracies)*100, '%')
 print('\nMinimum Accuracy:',np.min(accuracies)*100, '%')
 print('\nOverall Accuracy:',np.mean(accuracies)*100, '%')
-print('\nStandard Deviation is:',stdev(accuracies))
+print('\nStandard Deviation is:',statistics.stdev(accuracies))
