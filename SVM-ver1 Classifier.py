@@ -9,6 +9,7 @@ Created on Wed May  4 06:55:57 2022
 
 import numpy as np
 import pandas as pd
+from matplotlib import pyplot as plt
 from sklearn import metrics
 from sklearn import svm
 from sklearn.impute import SimpleImputer
@@ -55,3 +56,10 @@ accuracy = Water.score(X_test, y_test)
 print("test accuracy  : ", accuracy * 100, "%")
 
 print("Mean Square Error : ", metrics.mean_squared_error(np.asarray(y_test), prediction))
+
+#plotting
+plt.scatter(X_train[:,0], X_train[:,1] , color= 'blue' )
+plt.scatter(X_test[:,0], X_test[:,1], color='red')
+plt.title('SVM Model')
+plt.legend(['Train', 'Test'])
+plt.show()
