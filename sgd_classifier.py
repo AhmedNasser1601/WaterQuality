@@ -10,8 +10,6 @@ Original file is located at
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import train_test_split
-
-from scipy import stats
 import numpy as np
 from sklearn import metrics
 from sklearn.linear_model import SGDClassifier
@@ -100,11 +98,6 @@ df["Sulfate"].fillna(value = df["Sulfate"].mean(), inplace =True)
 #spliting the dataset
 X = df.drop('Potability',axis=1)
 Y = df.Potability
-
-#scale the data
-scaler = MinMaxScaler()
-X_train = scaler.fit_transform(X)
-X_test = scaler.transform(X)
 
 #splitting the data
 X_train, X_test, y_train, y_test = train_test_split(X, Y,test_size=0.2,random_state=42)
