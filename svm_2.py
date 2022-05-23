@@ -16,7 +16,7 @@ from sklearn import preprocessing
 from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import MinMaxScaler
 #loading csv file
-file_path ='water_potability.csv'
+file_path ='/content/water_potability.csv'
 dataset=pd.read_csv(file_path)
 dataset.head()
 

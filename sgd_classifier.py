@@ -15,7 +15,7 @@ from sklearn import metrics
 from sklearn.linear_model import SGDClassifier
 
 #loading csv file
-file_path ='water_potability.csv'
+file_path ='/content/water_potability.csv'
 df=pd.read_csv(file_path)
 
 #preprocessing
