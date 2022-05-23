@@ -6,7 +6,6 @@ Created on Wed May  4 06:55:57 2022
 """
 import pandas as pd
 import numpy as np
-from matplotlib import pyplot as plt
 from sklearn import svm
 from sklearn import metrics
 from sklearn.model_selection import train_test_split
@@ -55,8 +54,4 @@ print( "test accuracy  : ", accuracy * 100, "%")
 
 print("Mean Square Error : ", metrics.mean_squared_error(np.asarray(y_test), prediction))
 
-plt.scatter(X_train[:,0], X_train[:,1] )
-plt.scatter(X_test[:,0], X_test[:,1], color='red')
-plt.title('Train and testing accuracy')
-plt.legend(['Train', 'Test'])
-plt.show()
+
