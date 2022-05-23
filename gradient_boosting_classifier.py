@@ -8,6 +8,7 @@ Original file is located at
 """
 
 #Gradient Boosting Classifier
+#Gradient Boosting Classifier
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import train_test_split
@@ -25,12 +26,10 @@ df=pd.read_csv(file_path)
 #preprocessing
 #dropping null_valued cells
 df.drop_duplicates(keep='first',inplace=True)
-
 #replacing outliers by nulls
 for i in ['Chloramines']:
     q75,q25 = np.percentile(df.loc[:,i],[75,25])
     intr_qr = q75-q25
-
     upper = q75+(1.5*intr_qr)
     lower= q25-(1.5*intr_qr)
 
@@ -106,18 +105,18 @@ Y = df.Potability
 #scale the data
 scaler = MinMaxScaler()
 X_train = scaler.fit_transform(X)
-X_test = scaler.transform(X)
+
 
 #splitting the data
-X_train, X_val, y_train, y_val = train_test_split(X_train, Y,test_size=0.222,random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X_train, Y,test_size=0.222,random_state=42)
 
 #Now we can try setting different learning rates, so that we can compare the performance of the classifier's performance at different learning rates.
-lr_list = [0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1]
-for learning_rate in lr_list:
-    gb_clf = GradientBoostingClassifier(n_estimators=20, learning_rate=learning_rate, max_features=2, max_depth=2, random_state=0)
+learningRate_list = [0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1]
+for lr in learningRate_list:
+    gb_clf = GradientBoostingClassifier(n_estimators=20, learning_rate=lr, max_features=2, max_depth=2, random_state=0)
     gb_clf.fit(X_train, y_train)
 
-    print("Learning rate: ", learning_rate)
+    print("Learning rate: ", lr)
     print("Training Accuracy: {0:.3f}".format(gb_clf.score(X_train, y_train)))
-    print("Validation Accuracy: {0:.3f}".format(gb_clf.score(X_val, y_val)*100),'%')
+    print("Validation Accuracy: {0:.3f}".format(gb_clf.score(X_test, y_test)*100),'%')
     print("")
