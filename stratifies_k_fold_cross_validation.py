@@ -7,15 +7,8 @@ Original file is located at
     https://colab.research.google.com/drive/1Nrl11T2aCKg5zx1cPzC9lyk3PKZ2dqNB
 """
 
-<<<<<<< Updated upstream
 # STRATIFIES K-FOLD CROSS VALIDATION { 10-fold 
 # STRATIFIES K-FOLD CROSS VALIDATION { 10-fold 
-=======
-# STRATIFIES K-FOLD CROSS VALIDATION { 10-fold
-from statistics import stdev
-
-import numpy as np
->>>>>>> Stashed changes
 import pandas as pd
 import csv
 from sklearn import preprocessing
@@ -26,12 +19,8 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import MinMaxScaler
 import numpy as np
 #loading csv file
-<<<<<<< Updated upstream
 import statistics
 file_path ='/content/water_potability.csv'
-=======
-file_path ='water_potability.csv'
->>>>>>> Stashed changes
 df=pd.read_csv(file_path)
 
 #preprocessing
