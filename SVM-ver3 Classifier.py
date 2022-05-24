@@ -14,8 +14,6 @@ from sklearn import metrics
 from sklearn import svm
 from sklearn.model_selection import train_test_split
 
-# water quality dataset
-
 # loading csv file
 file_path = "waterQuality2.csv"
 dataset = pd.read_csv(file_path)
