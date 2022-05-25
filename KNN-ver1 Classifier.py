@@ -8,7 +8,6 @@ from sklearn.feature_selection import chi2
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.preprocessing import MinMaxScaler
 
 dataSet = pd.read_csv("waterQuality1.csv").dropna()  # to remove the nan values
 ## feature extraction
@@ -25,6 +24,75 @@ dataSetDataFrame = pd.DataFrame(dataSet)
 # drop the duplicated rows
 
 dataSetDataFrame.drop_duplicates(keep='last', inplace=True)
+# replacing outliers by nulls
+for i in ['Chloramines']:
+    q75, q25 = np.percentile(dataSetDataFrame.loc[:, i], [75, 25])
+    intr_qr = q75 - q25
+    upper = q75 + (1.5 * intr_qr)
+    lower = q25 - (1.5 * intr_qr)
+
+    dataSetDataFrame.loc[dataSetDataFrame[i] < lower, i] = np.nan
+    dataSetDataFrame.loc[dataSetDataFrame[i] > upper, i] = np.nan
+
+for i in ["Hardness"]:
+    q75, q25 = np.percentile(dataSetDataFrame.loc[:, i], [75, 25])
+    intr_qr = q75 - q25
+
+    upper = q75 + (1.5 * intr_qr)
+    lower = q25 - (1.5 * intr_qr)
+
+    dataSetDataFrame.loc[dataSetDataFrame[i] < lower, i] = np.nan
+    dataSetDataFrame.loc[dataSetDataFrame[i] > upper, i] = np.nan
+
+for i in ["Conductivity"]:
+    q75, q25 = np.percentile(dataSetDataFrame.loc[:, i], [75, 25])
+    intr_qr = q75 - q25
+
+    upper = q75 + (1.5 * intr_qr)
+    lower = q25 - (1.5 * intr_qr)
+
+    dataSetDataFrame.loc[dataSetDataFrame[i] < lower, i] = np.nan
+    dataSetDataFrame.loc[dataSetDataFrame[i] > upper, i] = np.nan
+
+for i in ["Organic_carbon"]:
+    q75, q25 = np.percentile(dataSetDataFrame.loc[:, i], [75, 25])
+    intr_qr = q75 - q25
+
+    upper = q75 + (1.5 * intr_qr)
+    lower = q25 - (1.5 * intr_qr)
+
+    dataSetDataFrame.loc[dataSetDataFrame[i] < lower, i] = np.nan
+    dataSetDataFrame.loc[dataSetDataFrame[i] > upper, i] = np.nan
+
+for x in ["Trihalomethanes"]:
+    q75, q25 = np.percentile(dataSetDataFrame.loc[:, x], [75, 25])
+    intr_qr = q75 - q25
+
+    max = q75 + (1.5 * intr_qr)
+    min = q25 - (1.5 * intr_qr)
+
+    dataSetDataFrame.loc[dataSetDataFrame[x] < min, x] = np.nan
+    dataSetDataFrame.loc[dataSetDataFrame[x] > max, x] = np.nan
+
+for x in ["Turbidity"]:
+    q75, q25 = np.percentile(dataSetDataFrame.loc[:, x], [75, 25])
+    intr_qr = q75 - q25
+
+    max = q75 + (1.5 * intr_qr)
+    min = q25 - (1.5 * intr_qr)
+
+    dataSetDataFrame.loc[dataSetDataFrame[x] < min, x] = np.nan
+    dataSetDataFrame.loc[dataSetDataFrame[x] > max, x] = np.nan
+
+# repacing the null values by the mean of eavery feature
+dataSetDataFrame["ph"].fillna(value=dataSetDataFrame["ph"].mean(), inplace=True)
+dataSetDataFrame["Hardness"].fillna(value=dataSetDataFrame["Hardness"].mean(), inplace=True)
+dataSetDataFrame["Chloramines"].fillna(value=dataSetDataFrame["Chloramines"].mean(), inplace=True)
+dataSetDataFrame["Conductivity"].fillna(value=dataSetDataFrame["Conductivity"].mean(), inplace=True)
+dataSetDataFrame["Organic_carbon"].fillna(value=dataSetDataFrame["Organic_carbon"].mean(), inplace=True)
+dataSetDataFrame["Turbidity"].fillna(value=dataSetDataFrame["Turbidity"].mean(), inplace=True)
+dataSetDataFrame['Trihalomethanes'].fillna(value=dataSetDataFrame['Trihalomethanes'].mean(), inplace=True)
+dataSetDataFrame["Sulfate"].fillna(value=dataSetDataFrame["Sulfate"].mean(), inplace=True)
 
 
 # normalization step :
@@ -35,18 +103,26 @@ def getTheNorm(col):
 ## loop on the data fram to get the norm of the cols :
 for col in dataSetDataFrame.columns:
     dataSetDataFrame[col] = getTheNorm(dataSetDataFrame[col])
-
-scalerObject = MinMaxScaler()
-scalerObject.fit(dataSetDataFrame)
-scaleDataFrame = scalerObject.fit_transform(dataSetDataFrame)
-theScaledDataFrame = pd.DataFrame(scaleDataFrame, columns=dataSetDataFrame.columns)
+## another way of the normalization using sklearn
+'''scalerObject=MinMaxScaler()
+scalerObject.fit(dataSetDataFrame) # passes the dataframe into the method 
+scaleDataFrame=scalerObject.fit_transform(dataSetDataFrame)# create a sacled matrix ( normalized matrix ya3ne )
+theScaledDataFrame=pd.DataFrame(scaleDataFrame, columns= dataSetDataFrame.columns)# recreate the dataframe using DataFrame calss of pandas 
+'''
 # print( theScaledDataFrame)
 # the importanat feautres
-theBestFeautres = SelectKBest(score_func=chi2, k=6)
+
+theBestFeautres = SelectKBest(score_func=chi2, k=7)
 resultOfFit = theBestFeautres.fit(dataFeautres, label)
-dfScoresRes = pd.DataFrame(resultOfFit.scores_)
-dfcolumns = pd.DataFrame(dataFeautres.columns)
-# print (" the dfcolumns ",dfcolumns)
+theMask = theBestFeautres.get_support()
+thenewFeautres = dataFeautres.columns[theMask]
+# theScaledDataFrame=pd.DataFrame(scaleDataFrame, columns= dataSetDataFrame.columns)
+print("  the new feautres are \n", thenewFeautres)
+dataSetDataFrame = pd.DataFrame(dataSetDataFrame, columns=thenewFeautres)
+dataSetDataFrame['Potability'] = label
+
+# print (" the data frame after the modifications\n ", dataSetDataFrame)
+
 
 # stratified sampelling
 dataFrameInGroups = dataSetDataFrame.groupby('Potability',
