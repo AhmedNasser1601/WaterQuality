@@ -19,17 +19,9 @@ file_path = "waterQuality1.csv"
 dataset = pd.read_csv(file_path)
 dataset.head()
 
-
-# preprocessing
-
-# normalization step :
-def getTheNorm(col):
-    return ((col - col.min()) / (col.max() - col.min()))
-
-
-## loop on the data fram to get the norm of the cols :
-for col in dataset.columns:
-    dataset[col] = getTheNorm(dataset[col])
+# normalization step
+for i in dataset.columns:
+    dataset[i] = (dataset[i]-dataset[i].min()) / (dataset[i].max()-dataset[i].min())
 
 dataset["ph"].fillna(value=dataset["ph"].mean(), inplace=True)
 dataset["Hardness"].fillna(value=dataset["Hardness"].mean(), inplace=True)
@@ -40,17 +32,15 @@ dataset["Turbidity"].fillna(value=dataset["Turbidity"].mean(), inplace=True)
 dataset['Trihalomethanes'].fillna(value=dataset['Trihalomethanes'].mean(), inplace=True)
 dataset["Sulfate"].fillna(value=dataset["Sulfate"].mean(), inplace=True)
 
-# remove duplicates
-dataset.drop_duplicates(keep='first', inplace=True)
+dataset.drop_duplicates(keep='first', inplace=True)   # remove duplicates
 
-# Model
 X = dataset.drop('Potability', axis=1)
 Y = dataset.Potability
 x_scaled = preprocessing.scale(X)
+
 # splitting the data
 X_train, X_test, y_train, y_test = train_test_split(x_scaled, Y, test_size=0.22, shuffle=True, random_state=42)
 
-xgb_clf = XGBClassifier()
-xgb_clf.fit(X_train, y_train)
-score = xgb_clf.score(X_test, y_test)
-print(score)
+xgb_clf = XGBClassifier().fit(X_train, y_train)
+
+print("Testing Accuracy: ", (xgb_clf.score(X_test, y_test) *100), '%')
