@@ -18,7 +18,8 @@ dataset = pd.read_csv("waterQuality1.csv")  # substitute the nulls with the mean
 dataset.sort_values("Sulfate", inplace=True)
 dataset.drop_duplicates(subset="Sulfate", keep=False, inplace=True)
 
-dataset['Trihalomethanes'] = dataset['Trihalomethanes'].fillna(dataset.groupby(['Potability'])['Trihalomethanes'].transform('mean'))
+dataset['Trihalomethanes'] = dataset['Trihalomethanes'].fillna(
+    dataset.groupby(['Potability'])['Trihalomethanes'].transform('mean'))
 
 dataset["Sulfate"].fillna(value=dataset["Sulfate"].mean(), inplace=True)
 dataset["Solids"].fillna(value=dataset["Solids"].mean(), inplace=True);
@@ -84,3 +85,4 @@ heatmap = sns.heatmap(df.corr(), annot=True)
 plt.hist(df.corr(), rwidth=0.8)  # rwidth is for width of the bar
 plt.xlabel("feature set ")
 plt.ylabel("protability")
+plt.show()
