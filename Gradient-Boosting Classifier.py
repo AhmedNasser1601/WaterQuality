@@ -109,7 +109,8 @@ for lr in learningRate_list:
     gb_clf = GradientBoostingClassifier(n_estimators=20, learning_rate=lr, max_features=2, max_depth=2, random_state=0)
     gb_clf.fit(X_train, y_train)
 
-    print("Learning rate: ", lr)
-    print("Training Accuracy: {0:.3f}".format(gb_clf.score(X_train, y_train)))
-    print("Validation Accuracy: {0:.3f}".format(gb_clf.score(X_test, y_test) * 100), '%')
-    print("")
+    print(
+        "Learning rate: ", lr, '\t',
+        "Training Accuracy: {0:.3f}".format(gb_clf.score(X_train, y_train)), '\t',
+        "Validation Accuracy: {0:.3f}".format(gb_clf.score(X_test, y_test) * 100), '%\n'
+    )
