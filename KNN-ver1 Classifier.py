@@ -117,7 +117,7 @@ resultOfFit = theBestFeautres.fit(dataFeautres, label)
 theMask = theBestFeautres.get_support()
 thenewFeautres = dataFeautres.columns[theMask]
 # theScaledDataFrame=pd.DataFrame(scaleDataFrame, columns= dataSetDataFrame.columns)
-print("  the new feautres are \n", thenewFeautres)
+print("Feautres: ", thenewFeautres)
 dataSetDataFrame = pd.DataFrame(dataSetDataFrame, columns=thenewFeautres)
 dataSetDataFrame['Potability'] = label
 
@@ -138,11 +138,11 @@ dataFeautresTrain, dataFeautresTest, labelTrain, labelTest = train_test_split(da
 knnClassifier = KNeighborsClassifier(n_neighbors=4)  # i got the value of k by try and error
 knnClassifier.fit(dataFeautresTrain, labelTrain)
 knnPredictionResult = knnClassifier.predict(dataFeautresTest)
-print(" the result  of the knn is ", knnPredictionResult)
+print("Result is: ", knnPredictionResult)
 ##calculate the accuracy and print the error
 modelAccuracy = accuracy_score(labelTest, knnPredictionResult)
 modelAccuracy *= 100
-print(" the prediction score is :", (modelAccuracy))
+print("\n\tPrediction Score is: ", (modelAccuracy))
 
 ## the mean square error is :
-print(" the mean Square error ", metrics.mean_squared_error(np.asarray(labelTest), knnPredictionResult))
+print("\n\tMean Square Error ", metrics.mean_squared_error(np.asarray(labelTest), knnPredictionResult))
