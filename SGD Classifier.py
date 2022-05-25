@@ -84,7 +84,7 @@ for x in ["Turbidity"]:
     df.loc[df[x] < min, x] = np.nan
     df.loc[df[x] > max, x] = np.nan
 
-# repacing the null values by the mean of eavery feature
+# replacing the null values by the mean of every feature
 df["ph"].fillna(value=df["ph"].mean(), inplace=True)
 df["Hardness"].fillna(value=df["Hardness"].mean(), inplace=True)
 df["Chloramines"].fillna(value=df["Chloramines"].mean(), inplace=True)
