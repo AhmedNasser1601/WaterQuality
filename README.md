@@ -15,17 +15,13 @@ Building of classifier models to predict the water potability and calculate the 
   Used Classifiers
 
     -> Naive-Bayes Classifier
-    -> KNN (ver1) Classifier
-       KNN (ver2) Classifier
+    -> KNN nearest-neighbor Classifier
     -> Random-Forest Classifier
     -> Gradient-Boosting Classifier
     -> SGD Classifier
-    -> ID3 Classifier
+    -> ID3 decision-tree Classifier
     -> Logistic Classifier
-    -> SVM (ver1) Classifier
-       SVM (ver2) Classifier
-       SVM (ver3) Classifier
-       SVM (new dataset) Classifier
+    -> SVM support-vector-machine Classifier
     -> XG-Boost Classifier
   
   
@@ -47,11 +43,11 @@ Building of classifier models to predict the water potability and calculate the 
 
 <hr>
 
-  FCIS, ASU, Data Mining 2022, Top #5 Projects Competition Criteria:
+  Bonuses and Extras:
   
     ● Applying extra techniques in preprocessing to improve accuracy 
     ● Apply different techniques for splitting data into training and testing 
     ● Use different testing Methods 
-    ● Applying extra Models into your data for classification
+    ● Applying extra Models into data for classification
     ● Try different Visualization graphs for each Model 
-    ● Search for getting another available data which can apply it into the model
+    ● Search for getting another available data which can be applied into the model
