@@ -9,49 +9,42 @@ Building of classifier models to predict the water potability and calculate the 
       which Indicates if water is safe for human consumption
     
     where 1 means Potable and 0 means Not potable.
-
 <hr>
 
   Used Classifiers
 
     -> Naive-Bayes Classifier
-    -> KNN (ver1) Classifier
-       KNN (ver2) Classifier
+    -> KNN nearest-neighbor Classifier
     -> Random-Forest Classifier
     -> Gradient-Boosting Classifier
     -> SGD Classifier
-    -> ID3 Classifier
+    -> ID3 decision-tree Classifier
     -> Logistic Classifier
-    -> SVM (ver1) Classifier
-       SVM (ver2) Classifier
-       SVM (ver3) Classifier
-       SVM (new dataset) Classifier
+    -> SVM support-vector-machine Classifier
     -> XG-Boost Classifier
   
   
   For the first dataset “waterQuality1”,
      the best model that succeeded to get the highest testing accuracy
         is: Random-Forest Classifier
-
 <hr>
 
-  Project implementation steps are going as follows:
-  
+  Implementation Steps:
+
     ● Understanding the dataset attributes
-    ● Apply the required data preprocessing methods
-    ● Divide your dataset to training and testing data
-    ● Implement the classification model that suits the project best
+    ● Applying the required data preprocessing methods
+    ● Division of dataset into training & testing
+    ● Implementation of classification models that best suits the data nature
     ● Investigate the classifier's performance on detecting the quality of water
-    ● Mention your observations and study the features that plays a vital role in water potability.
-    ● Use the testing dataset to predict the water potability and calculate the error percentage
-
+    ● Mention observations and study features that plays a vital role in water potability
+    ● Predict the water potability Quality and calculate the error percentage, based on the testing data
 <hr>
 
-  FCIS, ASU, Data Mining 2022, Top #5 Projects Competition Criteria:
-  
+  Bonuses and Extras:
+
     ● Applying extra techniques in preprocessing to improve accuracy 
     ● Apply different techniques for splitting data into training and testing 
-    ● Use different testing Methods 
-    ● Applying extra Models into your data for classification
+    ● Apply extra Models into data for classification & different testing methods
     ● Try different Visualization graphs for each Model 
-    ● Search for getting another available data which can apply it into the model
+    ● Search for getting another available data which can be applied into the model
+<hr>
